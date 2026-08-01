@@ -1,0 +1,21 @@
+# Spins up a local Postgres database matching the default DATABASE_URL in
+# .env.example. Run `docker compose up -d` from this folder, then start the
+# backend normally. Not required if you already have Postgres running
+# somewhere (local install, or a free hosted instance like Neon/Supabase/
+# Render) — just point DATABASE_URL at that instead.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: attendance_user
+      POSTGRES_PASSWORD: attendance_pass
+      POSTGRES_DB: attendance
+    ports:
+      - "5433:5432"
+    volumes:
+      - attendance_pg_data:/var/lib/postgresql/data
+
+volumes:
+  attendance_pg_data:
