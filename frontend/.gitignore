@@ -1,0 +1,4 @@
+node_modules/
+dist/
+public/models/*.json
+public/models/*-shard*
